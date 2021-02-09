@@ -12,7 +12,7 @@ namespace BL3TP.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.4.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.8.1.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -25,109 +25,61 @@ namespace BL3TP.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("NumPad7")]
-        public global::System.Windows.Forms.Keys savePosKey {
+        [global::System.Configuration.DefaultSettingValueAttribute("None")]
+        public global::System.Windows.Forms.Keys saveBind {
             get {
-                return ((global::System.Windows.Forms.Keys)(this["savePosKey"]));
+                return ((global::System.Windows.Forms.Keys)(this["saveBind"]));
             }
             set {
-                this["savePosKey"] = value;
+                this["saveBind"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("NumPad9")]
-        public global::System.Windows.Forms.Keys loadPosKey {
+        [global::System.Configuration.DefaultSettingValueAttribute("None")]
+        public global::System.Windows.Forms.Keys loadBind {
             get {
-                return ((global::System.Windows.Forms.Keys)(this["loadPosKey"]));
+                return ((global::System.Windows.Forms.Keys)(this["loadBind"]));
             }
             set {
-                this["loadPosKey"] = value;
+                this["loadBind"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("NumPad4")]
-        public global::System.Windows.Forms.Keys prevMapKey {
+        [global::System.Configuration.DefaultSettingValueAttribute("None")]
+        public global::System.Windows.Forms.Keys deleteBind {
             get {
-                return ((global::System.Windows.Forms.Keys)(this["prevMapKey"]));
+                return ((global::System.Windows.Forms.Keys)(this["deleteBind"]));
             }
             set {
-                this["prevMapKey"] = value;
+                this["deleteBind"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("NumPad6")]
-        public global::System.Windows.Forms.Keys nextMapKey {
+        [global::System.Configuration.DefaultSettingValueAttribute("None")]
+        public global::System.Windows.Forms.Keys nextBind {
             get {
-                return ((global::System.Windows.Forms.Keys)(this["nextMapKey"]));
+                return ((global::System.Windows.Forms.Keys)(this["nextBind"]));
             }
             set {
-                this["nextMapKey"] = value;
+                this["nextBind"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("NumPad1")]
-        public global::System.Windows.Forms.Keys prevStationKey {
+        [global::System.Configuration.DefaultSettingValueAttribute("None")]
+        public global::System.Windows.Forms.Keys prevBind {
             get {
-                return ((global::System.Windows.Forms.Keys)(this["prevStationKey"]));
+                return ((global::System.Windows.Forms.Keys)(this["prevBind"]));
             }
             set {
-                this["prevStationKey"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("NumPad3")]
-        public global::System.Windows.Forms.Keys nextStationKey {
-            get {
-                return ((global::System.Windows.Forms.Keys)(this["nextStationKey"]));
-            }
-            set {
-                this["nextStationKey"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("NumPad8")]
-        public global::System.Windows.Forms.Keys lockPosKey {
-            get {
-                return ((global::System.Windows.Forms.Keys)(this["lockPosKey"]));
-            }
-            set {
-                this["lockPosKey"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("NumPad2")]
-        public global::System.Windows.Forms.Keys teleportKey {
-            get {
-                return ((global::System.Windows.Forms.Keys)(this["teleportKey"]));
-            }
-            set {
-                this["teleportKey"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("NumPad5")]
-        public global::System.Windows.Forms.Keys autoKey {
-            get {
-                return ((global::System.Windows.Forms.Keys)(this["autoKey"]));
-            }
-            set {
-                this["autoKey"] = value;
+                this["prevBind"] = value;
             }
         }
     }

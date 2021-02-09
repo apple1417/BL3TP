@@ -2,32 +2,20 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="BL3TP.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="savePosKey" Type="System.Windows.Forms.Keys" Scope="User">
-      <Value Profile="(Default)">NumPad7</Value>
+    <Setting Name="saveBind" Type="System.Windows.Forms.Keys" Scope="User">
+      <Value Profile="(Default)">None</Value>
     </Setting>
-    <Setting Name="loadPosKey" Type="System.Windows.Forms.Keys" Scope="User">
-      <Value Profile="(Default)">NumPad9</Value>
+    <Setting Name="loadBind" Type="System.Windows.Forms.Keys" Scope="User">
+      <Value Profile="(Default)">None</Value>
     </Setting>
-    <Setting Name="prevMapKey" Type="System.Windows.Forms.Keys" Scope="User">
-      <Value Profile="(Default)">NumPad4</Value>
+    <Setting Name="deleteBind" Type="System.Windows.Forms.Keys" Scope="User">
+      <Value Profile="(Default)">None</Value>
     </Setting>
-    <Setting Name="nextMapKey" Type="System.Windows.Forms.Keys" Scope="User">
-      <Value Profile="(Default)">NumPad6</Value>
+    <Setting Name="nextBind" Type="System.Windows.Forms.Keys" Scope="User">
+      <Value Profile="(Default)">None</Value>
     </Setting>
-    <Setting Name="prevStationKey" Type="System.Windows.Forms.Keys" Scope="User">
-      <Value Profile="(Default)">NumPad1</Value>
-    </Setting>
-    <Setting Name="nextStationKey" Type="System.Windows.Forms.Keys" Scope="User">
-      <Value Profile="(Default)">NumPad3</Value>
-    </Setting>
-    <Setting Name="lockPosKey" Type="System.Windows.Forms.Keys" Scope="User">
-      <Value Profile="(Default)">NumPad8</Value>
-    </Setting>
-    <Setting Name="teleportKey" Type="System.Windows.Forms.Keys" Scope="User">
-      <Value Profile="(Default)">NumPad2</Value>
-    </Setting>
-    <Setting Name="autoKey" Type="System.Windows.Forms.Keys" Scope="User">
-      <Value Profile="(Default)">NumPad5</Value>
+    <Setting Name="prevBind" Type="System.Windows.Forms.Keys" Scope="User">
+      <Value Profile="(Default)">None</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -59,31 +59,5 @@ namespace BL3TP.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Location,X,Y,Z
-        ///Droughts,,,
-        ///Droughts FT,-18633,14568,348
-        ///Highway FT,48776,21920,-3594
-        ///Ellie,-15672,29517,600
-        ///Ship (Tannis side),18774,42905,4842
-        ///Ship (Highway side),22755,23395,4535
-        ///Ascension Bluff Entrance,79360,54926,-2887
-        ///Devil&apos;s Razor Entrance,82598,7242,-2646
-        ///Ascension Bluff,,,
-        ///FT,50919,-32202,13501
-        ///Heavy Outrunner,47938,7942,11162
-        ///Camp,90900,12138,10338
-        ///Mouthpiece Entrance,71420,43839,11901
-        ///Devil&apos;s Razor,,,
-        ///Roland&apos;s Rest FT,-11167,-27505,3885
-        ///Boomtown FT,33982,11428,5039
-        ///Entrance,13584 [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string coords {
-            get {
-                return ResourceManager.GetString("coords", resourceCulture);
-            }
-        }
     }
 }

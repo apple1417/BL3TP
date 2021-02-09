@@ -1,4 +1,4 @@
-﻿namespace CarWarpHelper {
+﻿namespace BL3TP {
   partial class BindingForm {
     /// <summary>
     /// Required designer variable.
@@ -24,20 +24,20 @@
     /// </summary>
     private void InitializeComponent() {
       this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-      this.lockBox = new CarWarpHelper.KeybindBox();
+      this.lockBox = new BL3TP.KeybindBox();
       this.lockLabel = new System.Windows.Forms.Label();
-      this.prevMapBox = new CarWarpHelper.KeybindBox();
-      this.loadPosBox = new CarWarpHelper.KeybindBox();
+      this.prevMapBox = new BL3TP.KeybindBox();
+      this.loadPosBox = new BL3TP.KeybindBox();
       this.savePosLabel = new System.Windows.Forms.Label();
-      this.savePosBox = new CarWarpHelper.KeybindBox();
-      this.nextMapBox = new CarWarpHelper.KeybindBox();
+      this.savePosBox = new BL3TP.KeybindBox();
+      this.nextMapBox = new BL3TP.KeybindBox();
       this.prevMapLabel = new System.Windows.Forms.Label();
       this.loadPosLabel = new System.Windows.Forms.Label();
       this.nextMapLabel = new System.Windows.Forms.Label();
-      this.teleportBox = new CarWarpHelper.KeybindBox();
-      this.nextStationBox = new CarWarpHelper.KeybindBox();
-      this.prevStationBox = new CarWarpHelper.KeybindBox();
-      this.autoBox = new CarWarpHelper.KeybindBox();
+      this.teleportBox = new BL3TP.KeybindBox();
+      this.nextStationBox = new BL3TP.KeybindBox();
+      this.prevStationBox = new BL3TP.KeybindBox();
+      this.autoBox = new BL3TP.KeybindBox();
       this.teleportLabel = new System.Windows.Forms.Label();
       this.nextStationLabel = new System.Windows.Forms.Label();
       this.prevStationLabel = new System.Windows.Forms.Label();

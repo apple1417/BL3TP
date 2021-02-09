@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace CarWarpHelper {
+namespace BL3TP {
   public partial class BindingForm : Form {
     private struct BindingBoxInfo {
       public Action<Keys> setter;

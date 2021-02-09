@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 
-namespace CarWarpHelper {
+namespace BL3TP {
   public class KeybindBox : TextBox {
     [DllImport("user32.dll", SetLastError = true)]
     private static extern bool HideCaret(IntPtr hWnd);

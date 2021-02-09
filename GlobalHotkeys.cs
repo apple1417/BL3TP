@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-namespace CarWarpHelper {
+namespace BL3TP {
   public partial class MainForm : Form {
 
     [DllImport("user32.dll", SetLastError = true)]

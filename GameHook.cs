@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using MemTools;
 
-namespace CarWarpHelper {
+namespace BL3TP {
   [StructLayout(LayoutKind.Sequential)]
   struct Vect3F {
     public Single X;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace CarWarpHelper {
+namespace BL3TP {
   class StationManager {
     private const string UNKNOWN_WORLD_NAME = "Unknown";
 

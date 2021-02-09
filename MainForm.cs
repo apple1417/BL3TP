@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
 
-namespace CarWarpHelper {
+namespace BL3TP {
   public partial class MainForm : Form {
     private static readonly int[] UPDATE_OPTIONS = new int[] {
       1, 5, 10, 17, 50, 100, 500, 1000

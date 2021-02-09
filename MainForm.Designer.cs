@@ -1,4 +1,4 @@
-﻿namespace CarWarpHelper {
+﻿namespace BL3TP {
   partial class MainForm {
     /// <summary>
     /// Required designer variable.

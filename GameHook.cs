@@ -7,7 +7,7 @@ using MemTools;
 
 namespace BL3TP {
   [StructLayout(LayoutKind.Sequential)]
-  struct Vect3F {
+  public struct Vect3F {
     public Single X;
     public Single Y;
     public Single Z;

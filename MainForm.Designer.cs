@@ -38,13 +38,15 @@
       this.emptyHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.deleteButton = new System.Windows.Forms.Button();
       this.prevLabel = new System.Windows.Forms.Label();
-      this.bindsTable = new System.Windows.Forms.TableLayoutPanel();
       this.nextLabel = new System.Windows.Forms.Label();
+      this.lockBindLabel = new System.Windows.Forms.Label();
+      this.bindsTable = new System.Windows.Forms.TableLayoutPanel();
       this.saveKeybind = new BL3TP.KeybindBox();
       this.loadKeybind = new BL3TP.KeybindBox();
       this.deleteKeybind = new BL3TP.KeybindBox();
       this.prevKeybind = new BL3TP.KeybindBox();
       this.nextKeybind = new BL3TP.KeybindBox();
+      this.lockKeybind = new BL3TP.KeybindBox();
       this.worldTable = new System.Windows.Forms.TableLayoutPanel();
       this.worldHeaderLabel = new System.Windows.Forms.Label();
       this.worldNameLabel = new System.Windows.Forms.Label();
@@ -144,14 +146,14 @@
       this.positionTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
       this.positionTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
       this.positionTable.Controls.Add(this.positionLabel, 0, 0);
-      this.positionTable.Controls.Add(this.zLock, 1, 3);
-      this.positionTable.Controls.Add(this.yLock, 1, 2);
-      this.positionTable.Controls.Add(this.lockLabel, 1, 0);
-      this.positionTable.Controls.Add(this.xLock, 1, 1);
-      this.positionTable.Controls.Add(this.zInput, 0, 3);
       this.positionTable.Controls.Add(this.xInput, 0, 1);
       this.positionTable.Controls.Add(this.yInput, 0, 2);
-      this.positionTable.Location = new System.Drawing.Point(215, 181);
+      this.positionTable.Controls.Add(this.zInput, 0, 3);
+      this.positionTable.Controls.Add(this.lockLabel, 1, 0);
+      this.positionTable.Controls.Add(this.xLock, 1, 1);
+      this.positionTable.Controls.Add(this.yLock, 1, 2);
+      this.positionTable.Controls.Add(this.zLock, 1, 3);
+      this.positionTable.Location = new System.Drawing.Point(215, 207);
       this.positionTable.Name = "positionTable";
       this.positionTable.RowCount = 4;
       this.positionTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -217,11 +219,12 @@
       this.presetList.Name = "presetList";
       this.presetList.ShowGroups = false;
       this.presetList.ShowItemToolTips = true;
-      this.presetList.Size = new System.Drawing.Size(197, 236);
+      this.presetList.Size = new System.Drawing.Size(197, 262);
       this.presetList.TabIndex = 32;
       this.presetList.UseCompatibleStateImageBehavior = false;
       this.presetList.View = System.Windows.Forms.View.Details;
-      this.presetList.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.PresetList_MouseDoubleClick);
+      this.presetList.SelectedIndexChanged += new System.EventHandler(this.PresetList_SelectedIndexChanged);
+      this.presetList.KeyUp += new System.Windows.Forms.KeyEventHandler(this.PresetList_KeyUp);
       // 
       // deleteButton
       // 
@@ -229,7 +232,7 @@
       this.deleteButton.Name = "deleteButton";
       this.deleteButton.Size = new System.Drawing.Size(94, 22);
       this.deleteButton.TabIndex = 34;
-      this.deleteButton.Text = "Delete";
+      this.deleteButton.Text = "Delete Preset";
       this.deleteButton.UseVisualStyleBackColor = true;
       this.deleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
       // 
@@ -244,6 +247,28 @@
       this.prevLabel.Text = "Previous Preset";
       this.prevLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
       // 
+      // nextLabel
+      // 
+      this.nextLabel.AutoSize = true;
+      this.nextLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.nextLabel.Location = new System.Drawing.Point(3, 110);
+      this.nextLabel.Name = "nextLabel";
+      this.nextLabel.Size = new System.Drawing.Size(94, 26);
+      this.nextLabel.TabIndex = 37;
+      this.nextLabel.Text = "Next Preset";
+      this.nextLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+      // 
+      // lockBindLabel
+      // 
+      this.lockBindLabel.AutoSize = true;
+      this.lockBindLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.lockBindLabel.Location = new System.Drawing.Point(3, 136);
+      this.lockBindLabel.Name = "lockBindLabel";
+      this.lockBindLabel.Size = new System.Drawing.Size(94, 26);
+      this.lockBindLabel.TabIndex = 37;
+      this.lockBindLabel.Text = "Toggle Lock";
+      this.lockBindLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+      // 
       // bindsTable
       // 
       this.bindsTable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -257,32 +282,24 @@
       this.bindsTable.Controls.Add(this.deleteButton, 0, 2);
       this.bindsTable.Controls.Add(this.prevLabel, 0, 3);
       this.bindsTable.Controls.Add(this.nextLabel, 0, 4);
+      this.bindsTable.Controls.Add(this.lockBindLabel, 0, 5);
       this.bindsTable.Controls.Add(this.saveKeybind, 1, 0);
       this.bindsTable.Controls.Add(this.loadKeybind, 1, 1);
       this.bindsTable.Controls.Add(this.deleteKeybind, 1, 2);
       this.bindsTable.Controls.Add(this.prevKeybind, 1, 3);
       this.bindsTable.Controls.Add(this.nextKeybind, 1, 4);
+      this.bindsTable.Controls.Add(this.lockKeybind, 1, 5);
       this.bindsTable.Location = new System.Drawing.Point(215, 39);
       this.bindsTable.Name = "bindsTable";
-      this.bindsTable.RowCount = 5;
+      this.bindsTable.RowCount = 6;
       this.bindsTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
       this.bindsTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
       this.bindsTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
       this.bindsTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
       this.bindsTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
-      this.bindsTable.Size = new System.Drawing.Size(200, 136);
+      this.bindsTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
+      this.bindsTable.Size = new System.Drawing.Size(200, 162);
       this.bindsTable.TabIndex = 37;
-      // 
-      // nextLabel
-      // 
-      this.nextLabel.AutoSize = true;
-      this.nextLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.nextLabel.Location = new System.Drawing.Point(3, 110);
-      this.nextLabel.Name = "nextLabel";
-      this.nextLabel.Size = new System.Drawing.Size(94, 26);
-      this.nextLabel.TabIndex = 37;
-      this.nextLabel.Text = "Next Preset";
-      this.nextLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
       // 
       // saveKeybind
       // 
@@ -339,6 +356,17 @@
       this.nextKeybind.TabIndex = 41;
       this.nextKeybind.Text = "None";
       // 
+      // lockKeybind
+      // 
+      this.lockKeybind.Cursor = System.Windows.Forms.Cursors.Arrow;
+      this.lockKeybind.Keys = System.Windows.Forms.Keys.None;
+      this.lockKeybind.Location = new System.Drawing.Point(103, 139);
+      this.lockKeybind.Name = "lockKeybind";
+      this.lockKeybind.ReadOnly = true;
+      this.lockKeybind.Size = new System.Drawing.Size(94, 20);
+      this.lockKeybind.TabIndex = 41;
+      this.lockKeybind.Text = "None";
+      // 
       // worldTable
       // 
       this.worldTable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -391,14 +419,14 @@
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(427, 286);
+      this.ClientSize = new System.Drawing.Size(427, 312);
       this.Controls.Add(this.worldTable);
       this.Controls.Add(this.bindsTable);
       this.Controls.Add(this.presetNameBox);
       this.Controls.Add(this.presetList);
       this.Controls.Add(this.positionTable);
       this.MaximizeBox = false;
-      this.MinimumSize = new System.Drawing.Size(443, 325);
+      this.MinimumSize = new System.Drawing.Size(443, 351);
       this.Name = "MainForm";
       this.Text = "BL3TP";
       ((System.ComponentModel.ISupportInitialize)(this.xInput)).EndInit();
@@ -432,13 +460,15 @@
     private System.Windows.Forms.ListView presetList;
     private System.Windows.Forms.Button deleteButton;
     private System.Windows.Forms.Label prevLabel;
-    private System.Windows.Forms.TableLayoutPanel bindsTable;
     private System.Windows.Forms.Label nextLabel;
+    private System.Windows.Forms.Label lockBindLabel;
+    private System.Windows.Forms.TableLayoutPanel bindsTable;
     private KeybindBox saveKeybind;
     private KeybindBox loadKeybind;
     private KeybindBox deleteKeybind;
-    private KeybindBox nextKeybind;
     private KeybindBox prevKeybind;
+    private KeybindBox nextKeybind;
+    private KeybindBox lockKeybind;
     private System.Windows.Forms.TableLayoutPanel worldTable;
     private System.Windows.Forms.Label worldHeaderLabel;
     private System.Windows.Forms.Label worldNameLabel;

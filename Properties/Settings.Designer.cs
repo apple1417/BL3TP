@@ -82,5 +82,28 @@ namespace BL3TP.Properties {
                 this["prevBind"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("None")]
+        public global::System.Windows.Forms.Keys lockBind {
+            get {
+                return ((global::System.Windows.Forms.Keys)(this["lockBind"]));
+            }
+            set {
+                this["lockBind"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public BL3TP.PresetSaver.World[] presets {
+            get {
+                return ((BL3TP.PresetSaver.World[])(this["presets"]));
+            }
+            set {
+                this["presets"] = value;
+            }
+        }
     }
 }

@@ -10,14 +10,16 @@ namespace BL3TP {
     private static readonly object EditPosLock = new object();
 
     #region UpdateMs
-    private int _updateMs = 100;
+    private static int WAITING_FOR_LAUNCH_UPDATE_MS = 5000;
+    private bool waitingForLaunch = false;
+    private int _updateMs = 17;
     public int UpdateMs {
       get {
         return _updateMs;
       }
       set {
         _updateMs = value;
-        if (!(updateTimer is null)) {
+        if (!(updateTimer is null) && !waitingForLaunch) {
           updateTimer.Stop();
           updateTimer.Interval = value;
           updateTimer.Start();
@@ -88,7 +90,7 @@ namespace BL3TP {
     public PositionHandler(Func<Vect3F, (bool hasChanged, Vect3F pos)> ProcessLockedPos) {
       this.ProcessLockedPos = ProcessLockedPos;
 
-      presets = new Dictionary<string, Dictionary<string, Vect3F>>(); // TODO: load from settings
+      presets = PresetSaver.LoadPresetDict();
 
       updateTimer = new Timer() {
         Interval = UpdateMs
@@ -101,8 +103,8 @@ namespace BL3TP {
       if (!HasWorld) {
         presets[CurrentWorld] = new Dictionary<string, Vect3F>();
       }
-      // TODO: save settings
       presets[CurrentWorld][name] = GameHook.Position;
+      PresetSaver.SavePresetDict(presets);
     }
 
     public Vect3F? Load(string name) {
@@ -119,8 +121,11 @@ namespace BL3TP {
 
     public void Delete(string name) {
       if (HasWorld) {
-        // TODO: save settings
         presets[CurrentWorld].Remove(name);
+        if (presets[CurrentWorld].Count == 0) {
+          presets.Remove(CurrentWorld);
+        }
+        PresetSaver.SavePresetDict(presets);
       }
     }
 
@@ -128,8 +133,21 @@ namespace BL3TP {
       if (!GameHook.IsHooked) {
         if (!GameHook.TryHook()) {
           PosAvailable = false;
+          // Lower the update interval while waiting to hook the game
+          if (!waitingForLaunch) {
+            waitingForLaunch = true;
+            updateTimer.Stop();
+            updateTimer.Interval = WAITING_FOR_LAUNCH_UPDATE_MS;
+            updateTimer.Start();
+          }
           return;
         }
+      }
+      if (waitingForLaunch) {
+        waitingForLaunch = false;
+        updateTimer.Stop();
+        updateTimer.Interval = UpdateMs;
+        updateTimer.Start();
       }
 
       // Dummy var to not cause spurious events

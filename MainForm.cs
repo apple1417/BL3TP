@@ -5,7 +5,6 @@ using System.Linq;
 using System.Windows.Forms;
 
 namespace BL3TP {
-
   public partial class MainForm : Form {
     private struct KeybindBoxInfo {
       public Action<Keys> setter;
@@ -20,7 +19,7 @@ namespace BL3TP {
     private readonly Dictionary<KeybindBox, KeybindBoxInfo> bindInfoMap;
     private readonly HashSet<Keys> allKeys;
 
-    private int updateMS = UPDATE_OPTIONS[5];
+    private int updateMS = UPDATE_OPTIONS[3];
 
     private readonly List<NumericUpDown> allPosInputs;
     private readonly PositionHandler posHandler;
@@ -28,11 +27,7 @@ namespace BL3TP {
     public MainForm() {
       InitializeComponent();
 
-      allPosInputs = new List<NumericUpDown>() { xInput, yInput, zInput };
-      foreach (NumericUpDown input in allPosInputs) {
-        input.Minimum = decimal.MinValue;
-        input.Maximum = decimal.MaxValue;
-      }
+      Properties.Settings.Default.Upgrade();
 
       #region Context Menu
       ContextMenuStrip = new ContextMenuStrip();
@@ -93,6 +88,11 @@ namespace BL3TP {
           setter = k => { Properties.Settings.Default.nextBind = k; },
           getter = () => { return Properties.Settings.Default.nextBind; },
           action = () => { ScrollPresetList(true); }
+        } },
+        { lockKeybind, new KeybindBoxInfo() {
+          setter = k => { Properties.Settings.Default.lockBind = k; },
+          getter = () => { return Properties.Settings.Default.lockBind; },
+          action = () => { ToggleLocked(); }
         } }
       };
 
@@ -114,6 +114,15 @@ namespace BL3TP {
         }
       }
       #endregion Binds
+
+      allPosInputs = new List<NumericUpDown>() { xInput, yInput, zInput };
+      foreach (NumericUpDown input in allPosInputs) {
+        input.Minimum = decimal.MinValue;
+        input.Maximum = decimal.MaxValue;
+
+      }
+      posHandler.PosAvailableChanged += PosBox_UpdateEnabled;
+      PosBox_UpdateEnabled(null, null);
     }
 
     private void ChangeUpdateRate(object sender, EventArgs e) {
@@ -128,6 +137,11 @@ namespace BL3TP {
       }
 
       posHandler.UpdateMs = updateMS;
+    }
+
+    private void CurrentWorld_Changed(object sender, EventArgs e) {
+      worldNameLabel.Text = posHandler.CurrentWorld ?? "Unknown";
+      UpdatePresetList();
     }
 
     #region Binds
@@ -239,6 +253,24 @@ namespace BL3TP {
       return (xLock.Checked || yLock.Checked || zLock.Checked, pos);
     }
 
+    private void ToggleLocked() {
+      // Based off of what state the majority of boxes are in
+      int onCount = 0;
+      if (xLock.Checked) {
+        onCount++;
+      }
+      if (yLock.Checked) {
+        onCount++;
+      }
+      if (zLock.Checked) {
+        onCount++;
+      }
+
+      bool newState = onCount < 2;
+      xLock.Checked = newState;
+      yLock.Checked = newState;
+      zLock.Checked = newState;
+    }
 
     private void PosBox_ValueChanged(object sender, EventArgs e) {
       try {
@@ -256,13 +288,13 @@ namespace BL3TP {
         e.SuppressKeyPress = true;
       }
     }
+
+    private void PosBox_UpdateEnabled(object sender, EventArgs e) {
+      allPosInputs.ForEach(input => input.Enabled = posHandler.PosAvailable);
+    }
     #endregion Pos Box Events
 
-    private void CurrentWorld_Changed(object sender, EventArgs e) {
-      worldNameLabel.Text = posHandler.CurrentWorld ?? "Unknown";
-      UpdatePresetList();
-    }
-
+    #region Preset List
     private void UpdatePresetList() {
       // It might not be the most efficent to remake the whole list each time, but it sure makes for cleaner code
       presetList.Items.Clear();
@@ -282,8 +314,9 @@ namespace BL3TP {
       DeleteButton_UpdateEnabled(null, null);
     }
 
-    private void PresetList_MouseDoubleClick(object sender, MouseEventArgs e) {
+    private void PresetList_SelectedIndexChanged(object sender, EventArgs e) {
       presetNameBox.Text = presetList.FocusedItem.Text;
+      DeleteButton_UpdateEnabled(null, null);
     }
 
     private void ScrollPresetList(bool forwards) {
@@ -308,5 +341,12 @@ namespace BL3TP {
 
       presetNameBox.Text = presetList.Items[newIndex].Text;
     }
+
+    private void PresetList_KeyUp(object sender, KeyEventArgs e) {
+      if (e.KeyCode == Keys.Delete) {
+        DeleteButton_Click(null, null);
+      }
+    }
+    #endregion Preset List
   }
 }

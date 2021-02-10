@@ -32,9 +32,10 @@
       this.positionTable = new System.Windows.Forms.TableLayoutPanel();
       this.positionLabel = new System.Windows.Forms.Label();
       this.lockLabel = new System.Windows.Forms.Label();
-      this.saveButtton = new System.Windows.Forms.Button();
+      this.saveButton = new System.Windows.Forms.Button();
       this.loadButton = new System.Windows.Forms.Button();
       this.presetList = new System.Windows.Forms.ListView();
+      this.emptyHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.deleteButton = new System.Windows.Forms.Button();
       this.prevLabel = new System.Windows.Forms.Label();
       this.bindsTable = new System.Windows.Forms.TableLayoutPanel();
@@ -42,13 +43,12 @@
       this.saveKeybind = new BL3TP.KeybindBox();
       this.loadKeybind = new BL3TP.KeybindBox();
       this.deleteKeybind = new BL3TP.KeybindBox();
-      this.nextKeybind = new BL3TP.KeybindBox();
       this.prevKeybind = new BL3TP.KeybindBox();
+      this.nextKeybind = new BL3TP.KeybindBox();
       this.worldTable = new System.Windows.Forms.TableLayoutPanel();
       this.worldHeaderLabel = new System.Windows.Forms.Label();
       this.worldNameLabel = new System.Windows.Forms.Label();
       this.presetNameBox = new BL3TP.HintTextBox();
-      this.emptyHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       ((System.ComponentModel.ISupportInitialize)(this.xInput)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.yInput)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.zInput)).BeginInit();
@@ -70,8 +70,8 @@
       this.xInput.Size = new System.Drawing.Size(155, 20);
       this.xInput.TabIndex = 0;
       this.xInput.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-      this.xInput.ValueChanged += new System.EventHandler(this.Position_ValueChanged);
-      this.xInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Position_KeyDown);
+      this.xInput.ValueChanged += new System.EventHandler(this.PosBox_ValueChanged);
+      this.xInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PosBox_KeyDown);
       // 
       // yInput
       // 
@@ -86,8 +86,8 @@
       this.yInput.Size = new System.Drawing.Size(155, 20);
       this.yInput.TabIndex = 8;
       this.yInput.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-      this.yInput.ValueChanged += new System.EventHandler(this.Position_ValueChanged);
-      this.yInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Position_KeyDown);
+      this.yInput.ValueChanged += new System.EventHandler(this.PosBox_ValueChanged);
+      this.yInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PosBox_KeyDown);
       // 
       // zInput
       // 
@@ -102,8 +102,8 @@
       this.zInput.Size = new System.Drawing.Size(155, 20);
       this.zInput.TabIndex = 9;
       this.zInput.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-      this.zInput.ValueChanged += new System.EventHandler(this.Position_ValueChanged);
-      this.zInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Position_KeyDown);
+      this.zInput.ValueChanged += new System.EventHandler(this.PosBox_ValueChanged);
+      this.zInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PosBox_KeyDown);
       // 
       // zLock
       // 
@@ -183,15 +183,15 @@
       this.lockLabel.TabIndex = 1;
       this.lockLabel.Text = "Lock";
       // 
-      // saveButtton
+      // saveButton
       // 
-      this.saveButtton.Location = new System.Drawing.Point(3, 3);
-      this.saveButtton.Name = "saveButtton";
-      this.saveButtton.Size = new System.Drawing.Size(94, 22);
-      this.saveButtton.TabIndex = 29;
-      this.saveButtton.Text = "Save";
-      this.saveButtton.UseVisualStyleBackColor = true;
-      this.saveButtton.Click += new System.EventHandler(this.SaveButton_Click);
+      this.saveButton.Location = new System.Drawing.Point(3, 3);
+      this.saveButton.Name = "saveButton";
+      this.saveButton.Size = new System.Drawing.Size(94, 22);
+      this.saveButton.TabIndex = 29;
+      this.saveButton.Text = "Save";
+      this.saveButton.UseVisualStyleBackColor = true;
+      this.saveButton.Click += new System.EventHandler(this.SaveButton_Click);
       // 
       // loadButton
       // 
@@ -221,6 +221,7 @@
       this.presetList.TabIndex = 32;
       this.presetList.UseCompatibleStateImageBehavior = false;
       this.presetList.View = System.Windows.Forms.View.Details;
+      this.presetList.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.PresetList_MouseDoubleClick);
       // 
       // deleteButton
       // 
@@ -236,7 +237,7 @@
       // 
       this.prevLabel.AutoSize = true;
       this.prevLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.prevLabel.Location = new System.Drawing.Point(3, 110);
+      this.prevLabel.Location = new System.Drawing.Point(3, 84);
       this.prevLabel.Name = "prevLabel";
       this.prevLabel.Size = new System.Drawing.Size(94, 26);
       this.prevLabel.TabIndex = 36;
@@ -251,16 +252,16 @@
       this.bindsTable.ColumnCount = 2;
       this.bindsTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
       this.bindsTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-      this.bindsTable.Controls.Add(this.saveButtton, 0, 0);
+      this.bindsTable.Controls.Add(this.saveButton, 0, 0);
       this.bindsTable.Controls.Add(this.loadButton, 0, 1);
       this.bindsTable.Controls.Add(this.deleteButton, 0, 2);
-      this.bindsTable.Controls.Add(this.nextLabel, 0, 3);
-      this.bindsTable.Controls.Add(this.prevLabel, 0, 4);
+      this.bindsTable.Controls.Add(this.prevLabel, 0, 3);
+      this.bindsTable.Controls.Add(this.nextLabel, 0, 4);
       this.bindsTable.Controls.Add(this.saveKeybind, 1, 0);
       this.bindsTable.Controls.Add(this.loadKeybind, 1, 1);
       this.bindsTable.Controls.Add(this.deleteKeybind, 1, 2);
-      this.bindsTable.Controls.Add(this.nextKeybind, 1, 3);
-      this.bindsTable.Controls.Add(this.prevKeybind, 1, 4);
+      this.bindsTable.Controls.Add(this.prevKeybind, 1, 3);
+      this.bindsTable.Controls.Add(this.nextKeybind, 1, 4);
       this.bindsTable.Location = new System.Drawing.Point(215, 39);
       this.bindsTable.Name = "bindsTable";
       this.bindsTable.RowCount = 5;
@@ -276,7 +277,7 @@
       // 
       this.nextLabel.AutoSize = true;
       this.nextLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.nextLabel.Location = new System.Drawing.Point(3, 84);
+      this.nextLabel.Location = new System.Drawing.Point(3, 110);
       this.nextLabel.Name = "nextLabel";
       this.nextLabel.Size = new System.Drawing.Size(94, 26);
       this.nextLabel.TabIndex = 37;
@@ -316,27 +317,27 @@
       this.deleteKeybind.TabIndex = 40;
       this.deleteKeybind.Text = "None";
       // 
-      // nextKeybind
-      // 
-      this.nextKeybind.Cursor = System.Windows.Forms.Cursors.Arrow;
-      this.nextKeybind.Keys = System.Windows.Forms.Keys.None;
-      this.nextKeybind.Location = new System.Drawing.Point(103, 87);
-      this.nextKeybind.Name = "nextKeybind";
-      this.nextKeybind.ReadOnly = true;
-      this.nextKeybind.Size = new System.Drawing.Size(94, 20);
-      this.nextKeybind.TabIndex = 41;
-      this.nextKeybind.Text = "None";
-      // 
       // prevKeybind
       // 
       this.prevKeybind.Cursor = System.Windows.Forms.Cursors.Arrow;
       this.prevKeybind.Keys = System.Windows.Forms.Keys.None;
-      this.prevKeybind.Location = new System.Drawing.Point(103, 113);
+      this.prevKeybind.Location = new System.Drawing.Point(103, 87);
       this.prevKeybind.Name = "prevKeybind";
       this.prevKeybind.ReadOnly = true;
       this.prevKeybind.Size = new System.Drawing.Size(94, 20);
       this.prevKeybind.TabIndex = 42;
       this.prevKeybind.Text = "None";
+      // 
+      // nextKeybind
+      // 
+      this.nextKeybind.Cursor = System.Windows.Forms.Cursors.Arrow;
+      this.nextKeybind.Keys = System.Windows.Forms.Keys.None;
+      this.nextKeybind.Location = new System.Drawing.Point(103, 113);
+      this.nextKeybind.Name = "nextKeybind";
+      this.nextKeybind.ReadOnly = true;
+      this.nextKeybind.Size = new System.Drawing.Size(94, 20);
+      this.nextKeybind.TabIndex = 41;
+      this.nextKeybind.Text = "None";
       // 
       // worldTable
       // 
@@ -420,7 +421,7 @@
         private System.Windows.Forms.TableLayoutPanel positionTable;
         private System.Windows.Forms.Label positionLabel;
         private System.Windows.Forms.Label lockLabel;
-    private System.Windows.Forms.Button saveButtton;
+    private System.Windows.Forms.Button saveButton;
     private System.Windows.Forms.Button loadButton;
         internal System.Windows.Forms.CheckBox zLock;
         internal System.Windows.Forms.CheckBox xLock;

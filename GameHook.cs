@@ -14,6 +14,10 @@ namespace BL3TP {
   }
 
   static class GameHook {
+    private static readonly string[] GAME_NAMES = new string[] {
+      "Borderlands3", "Wonderlands"
+    };
+
     private static MemManager manager = null;
     private static Pointer posPtr = null;
     private static Pointer worldPtr = null;
@@ -55,22 +59,24 @@ namespace BL3TP {
     }
 
     public static bool TryHook() {
-      foreach (Process p in Process.GetProcessesByName("Borderlands3")) {
-        manager = new MemManager(p);
+      foreach (string gameName in GAME_NAMES) {
+        foreach (Process p in Process.GetProcessesByName(gameName)) {
+          manager = new MemManager(p);
 
-        try {
-          if (!LoadPositionPointer(p.MainModule)) {
+          try {
+            if (!LoadPositionPointer(p.MainModule)) {
+              continue;
+            }
+            if (!LoadWorldPointer(p.MainModule)) {
+              continue;
+            }
+            if (!LoadGNamesPointer(p.MainModule)) {
+              continue;
+            }
+            break;
+          } catch (Win32Exception) {
             continue;
           }
-          if (!LoadWorldPointer(p.MainModule)) {
-            continue;
-          }
-          if (!LoadGNamesPointer(p.MainModule)) {
-            continue;
-          }
-          break;
-        } catch (Win32Exception) {
-          continue;
         }
       }
       return IsHooked;
